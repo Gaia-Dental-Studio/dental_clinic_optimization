@@ -1,0 +1,1688 @@
+{
+    "treatment": [
+        {
+            "treatment_name": "Diagnosis & Medical Data Collection",
+            "treatment_details": [
+                {
+                    "item_number": 1001,
+                    "item_description": "Consultation and Oral Examination",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": "Direct - per one session",
+                            "variation_duration": 45,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 1,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Direct Consultation"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Collecting Medical History (by template)"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Oral Exam (Chief Complaint)"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Oral Exam (General Check)"
+                                },
+                                {
+                                    "sub_item_number": 5,
+                                    "procedure": "Clinical periodontal analysis and recording"
+                                },
+                                {
+                                    "sub_item_number": 6,
+                                    "procedure": "Finding Explanation"
+                                },
+                                {
+                                    "sub_item_number": 7,
+                                    "procedure": "Explanation about Treatment Plan"
+                                },
+                                {
+                                    "sub_item_number": 8,
+                                    "procedure": "Feedback & Discussion"   
+                                },
+                                {
+                                    "sub_item_number": 9,
+                                    "procedure": "Letter of referral from the Dentist (if necessary)"   
+                                },
+                                {
+                                    "sub_item_number": 10,
+                                    "procedure": "Maintenance Instruction: Oral health education & Advice (Prescription if any)"   
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "B",
+                            "variation_details": "Teledentistry - per one session",
+                            "variation_duration": 35,
+                            "variation_worker_responsibility": "LV1",
+                            "chair": 0,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Virtual Consultation"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Collecting Medical History (by template)"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Oral Exam (Virtual Check)"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Finding Explanation"
+                                },
+                                {
+                                    "sub_item_number": 5,
+                                    "procedure": "Explanation about Treatment Plan"
+                                },
+                                {
+                                    "sub_item_number": 6,
+                                    "procedure": "Feedback & Discussion"
+                                },
+                                {
+                                    "sub_item_number": 7,
+                                    "procedure": "Maintenance Instruction: Oral health education & Advice (Prescription if any)"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "C",
+                            "variation_details": "In-Situ - per one sessioN",
+                            "variation_duration": 20,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 1,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Direct Consultation"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Oral Exam (General Check)"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Travel to provide services"
+                                }
+                            ]
+                        }                                                 
+                    ]
+                },
+                {
+                    "item_number": 1002,
+                    "item_description": "Bacteriological and saliva examination",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": "Direct - per one session",
+                            "variation_duration": 60,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Bacteriological examination"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Saliva Screening"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "item_number": 1003,
+                    "item_description": "Clinical Photo records",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": "Direct - per one session",
+                            "variation_duration": 8,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 1,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "EO Photos"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "IO Photos"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "B",
+                            "variation_details": "In-Situ - per one session",
+                            "variation_duration": 8,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 1,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "EO Photos"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "IO Photos"
+                                }
+                            ]
+                        }
+                    ]
+                }                                 
+            ]
+        },
+        {
+            "treatment_name": "X-Rays Data Collection",
+            "treatment_details": [
+                {
+                    "item_number": 1004,
+                    "item_description": "Radiographic examination ",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": "Periapical/bitewing radiograph - direct per appointment",
+                            "variation_duration": 10,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 1,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Radiographic examination process"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Xrays Checking"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Xrays Result Explanation"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "B",
+                            "variation_details": "Periapical/bitewing radiograph - in-situ per appointment",
+                            "variation_duration": 10,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 1,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Setting Up Machine"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Radiographic examination process"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Xrays Checking"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Xrays Result Explanation"
+                                },
+                                {
+                                    "sub_item_number": 5,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "C",
+                            "variation_details": "Panoramic radiograph - per appointment",
+                            "variation_duration": 15,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Radiographic examination process"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Xrays Checking"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Xrays Result Explanation"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "D",
+                            "variation_details": "Cephalometric radiograph - per appointment",
+                            "variation_duration": 25,
+                            "variation_worker_responsibility": "LV1",
+                            "chair": 1,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Radiographic examination process"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Xrays Checking"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Xrays Result Explanation"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "E",
+                            "variation_details": "Cone Beam Computer Tomography (CBCT) - per appointment",
+                            "variation_duration": 50,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 0,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Radiographic examination process"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Xrays Checking"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Xrays Result Explanation"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        }                                                         
+                    ]
+                }               
+            ]
+        },
+        {
+            "treatment_name": "Oral Analysis Collection",
+            "treatment_details": [
+                {
+                    "item_number": 1005,
+                    "item_description": "Dental impression",
+                    
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": "Digital - Intraoral scan - per clinic appointment",
+                            "variation_duration": 15,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "3D Intraoral Scan"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Results Checking"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "B",
+                            "variation_details": "Conventional (denture function) -  Impression - per clinic appointment",
+                            "variation_duration": 10,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 2,
+                            "item_procedures": [
+                                {
+                                    "sub_item_number": 1,
+                                    "procedure": "Dental Impression Process"
+                                },
+                                {
+                                    "sub_item_number": 2,
+                                    "procedure": "Results Checking"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "C",
+                            "variation_details": "Digital - Intraoral scan - per in-situ appointment",
+                            "variation_duration": 10,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 2,
+                            "item_procedures": [
+                                {
+                                    "sub_item_number": 1,
+                                    "procedure": "3D Intraoral Scan Set Up"
+                                },
+                                {
+                                    "sub_item_number": 2,
+                                    "procedure": "3D Intraoral Scan"
+                                },
+                                {
+                                    "sub_item_number": 2,
+                                    "procedure": "Results Checking"
+                                }
+                            ]
+                        }
+                    ]
+                }
+                
+            ]
+        },
+        {
+            "treatment_name": "Basic Filling",
+            "treatment_details": [
+                {
+                    "item_number": 3002,
+                    "item_description": "Tooth preparation for filling - per tooth",
+                    
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": "Direct Clinic Appointment",
+                            "variation_duration": 20,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   "sub_item_number": 1,
+                                    "procedure": "Cavity Removal"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Cleaning"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "B",
+                            "variation_details": "Direct Insitu Appointment",
+                            "variation_duration": 20,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 0,
+                            "item_procedures": null
+                        }
+                    ]
+                },
+                {
+                    "item_number": 3003,
+                    "item_description": "Direct dental filling",
+                    "variation":[
+                        {   "variation_code":"A",
+                            "variation_details": "GIC Material",
+                            "variation_duration": 20,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 2,
+                            "item_procedures":
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Mixture of GIC materials"
+                                },
+                                {
+                                    "sub_item_number": 2,
+                                    "procedure": "GIC Application"
+                                },
+                                {
+                                    "sub_item_number": 3,
+                                    "procedure": "Occlusal checking (if necessary)"
+                                },
+                                {
+                                    "sub_item_number": 4,
+                                    "procedure": "Polishing"
+                                },
+                                {
+                                    "sub_item_number": 5,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        },
+                        {   "variation_code": "B",
+                            "variation_details": "Resin Material",
+                            "variation_duration": 20,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 2,
+                            "item_procedures":
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Resin Composite"
+                                },
+                                {
+                                    "sub_item_number": 2,
+                                    "procedure": "Curing Process"
+                                },
+                                {
+                                    "sub_item_number": 3,
+                                    "procedure": "Polishing"
+                                },
+                                {
+                                    "sub_item_number": 4,
+                                    "procedure": "Maintenance Instruction"
+                                }             
+                            ]
+                        },
+                        {   "variation_code": "C",
+                            "variation_details": "Temporary Filling",
+                            "variation_duration": 10,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 1,
+                            "item_procedures":
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Dry tooth surface"
+                                },
+                                {
+                                    "sub_item_number": 2,
+                                    "procedure": "Placement of temporal filling"
+                                }          
+                            ]
+                        }
+                    ]
+                    
+                }
+            ]
+        },
+        {
+            "treatment_name": "Basic Filling - Insitu",
+            "treatment_details": [
+                {
+                    "item_number": 3004,
+                    "item_description": "Cementation of indirect filling - per tooth",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 40,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   "sub_item_number": 1,
+                                    "procedure": "Oral examination"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Trial and adjustment"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Cementation"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Cementation Checking"
+                                },
+                                {   
+                                    "sub_item_number": 5,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        }         
+                    ]
+                }
+            ]
+        },
+        {
+            "treatment_name": "Extraction",
+            "treatment_details": [
+                {
+                    "item_number": 3005,
+                    "item_description": "Tooth removal",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": "Primary tooth - per tooth",
+                            "variation_duration": 35,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   "sub_item_number": 1,
+                                    "procedure": "Tooth extraction"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Post extraction checking"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Post extraction procedure"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "B",
+                            "variation_details": "Permanent tooth - per tooth",
+                            "variation_duration": 65,
+                            "variation_worker_responsibility": "LV2",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   "sub_item_number": 1,
+                                    "procedure": "Tooth extraction"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Post extraction checking"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Post extraction procedure"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "C",
+                            "variation_details": "Selection tooth removal - per tooth",
+                            "variation_duration": 50,
+                            "variation_worker_responsibility": "LV3",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   "sub_item_number": 1,
+                                    "procedure": "Tooth extraction"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Post extraction checking"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Post extraction procedure"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "D",
+                            "variation_details": "Surgical tooth removal - one tooth include bone removal and tooth section",
+                            "variation_duration": 100,
+                            "variation_worker_responsibility": "LV3",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   "sub_item_number": 1,
+                                    "procedure": "Opening the gume by incision"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Tooth division (if necessary)"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Bone removal (if necessary)"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Tooth extraction"
+                                },
+                                {   
+                                    "sub_item_number": 5,
+                                    "procedure": "Post surgery checking"
+                                },
+                                {   
+                                    "sub_item_number": 6,
+                                    "procedure": "Wound snitching"
+                                },
+                                {   
+                                    "sub_item_number": 7,
+                                    "procedure": "Maintenance Instruction"
+                                },
+                                {   
+                                    "sub_item_number": 8,
+                                    "procedure": "Removal of wound stiches (2nd visit)"
+                                },
+                                {   
+                                    "sub_item_number": 9,
+                                    "procedure": "Post surfery treatemetn (wnd visit)"
+                                }
+                            ]
+                        }                                                
+                    ]
+                }
+            ]
+        },
+        {
+            "treatment_name": "Oral Surgery",
+            "treatment_details": [
+                {
+                    "item_number": 3006,
+                    "item_description": "Treatment for abscess",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 50,
+                            "variation_worker_responsibility": "LV3",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   "sub_item_number": 1,
+                                    "procedure": "Gum Opening by incision (if necessary)"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Application of rubber drain"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Removal of rubber drain"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Stitches"
+                                },
+                                {
+                                    "sub_item_number": 5,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        }                                     
+                    ]
+                },
+                {
+                    "item_number": 3007,
+                    "item_description": "Sinus Lift",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 55,
+                            "variation_worker_responsibility": "LV5",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   "sub_item_number": 1,
+                                    "procedure": "Gum Opening by incision (if necessary)"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Removal of bone (if necessary)"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Sinus lift"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Wound snitching"
+                                },
+                                {
+                                    "sub_item_number": 5,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        }                                     
+                    ]
+                },
+                {
+                    "item_number": 3008,
+                    "item_description": "Bone Graft",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 15,
+                            "variation_worker_responsibility": "LV5",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   "sub_item_number": 1,
+                                    "procedure": "Application of bone graft"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Membrane application (if necessary)"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "membrane removal (if necessary)"
+                                }
+                            ]
+                        }                                     
+                    ]
+                }
+            ]
+        },
+        {
+            "treatment_name": "Oral Surgery",
+            "treatment_details": [
+                {
+                    "item_number": 3009,
+                    "item_description": "Access opening - per tooth",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 20,
+                            "variation_worker_responsibility": "LV3",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   "sub_item_number": 1,
+                                    "procedure": "Caries removal"
+                                },
+                                {   "sub_item_number": 2,
+                                    "procedure": "Access opening to pulp chamber"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Cleaning"
+                                }
+                            ]
+                        }                                     
+                    ]
+                },
+                {
+                    "item_number": 3010,
+                    "item_description": "Chemo-mechanical root canal preparation - per canal",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 85,
+                            "variation_worker_responsibility": "LV3",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Application of 5.25% NaOCl or EDTA"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Negotiation of calcified canal"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Removal of pulp tissue"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Measurement of working length"
+                                },
+                                {   
+                                    "sub_item_number": 5,
+                                    "procedure": "Root canal preparation"
+                                },
+                                {   
+                                    "sub_item_number": 6,
+                                    "procedure": "Irrigation"
+                                },
+                                {   
+                                    "sub_item_number": 7,
+                                    "procedure": "Trial of gutta-percha"
+                                },
+                                {
+                                    "sub_item_number": 8,
+                                    "procedure": "Root canal dressing"
+                                },
+                                {
+                                    "sub_item_number": 8,
+                                    "procedure": "Provisional restoration"
+                                }
+                            ]
+                        }                                     
+                    ]
+                },
+                {
+                    "item_number": 3011,
+                    "item_description": "Irrigation an/or dressing of the root canal system - per canal",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 30,
+                            "variation_worker_responsibility": "LV3",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Open provisional restoration"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Re-dressing root canal"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Provisional restoration"
+                                }
+                            ]
+                        }                                     
+                    ]
+                },
+                {
+                    "item_number": 3012,
+                    "item_description": "Root canal obturation - per canal",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 25,
+                            "variation_worker_responsibility": "LV3",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Mix root canal seal"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Cut the gutta percha"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Provisional restoration"
+                                }
+                            ]
+                        }                                     
+                    ]
+                },
+                {
+                    "item_number": 3013,
+                    "item_description": "Post and root cap",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 40,
+                            "variation_worker_responsibility": "LV3",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Removal of root canal filling - per canal"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Post preparation"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Application of post"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Core build up"
+                                },
+                                {   
+                                    "sub_item_number": 5,
+                                    "procedure": "Maintenance instruction"
+                                }
+                            ]
+                        }                                     
+                    ]
+                },
+                {
+                    "item_number": 3014,
+                    "item_description": "Pulp capping",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 5,
+                            "variation_worker_responsibility": "LV1",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Mixture of pulp capping materials"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Placement of pulp capping materials"
+                                }
+                            ]
+                        }                                     
+                    ]
+                },
+                {
+                    "item_number": 3015,
+                    "item_description": "Pulpotomy",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 60,
+                            "variation_worker_responsibility": "LV2",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Removal of coronal pulp tissue"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Application of coagulation material"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Fill in pulpotomy materials"
+                                }
+                            ]
+                        }                                     
+                    ]
+                }
+            ]   
+        },
+        {
+            "treatment_name": "Aligner",
+            "treatment_details": [
+                {
+                    "item_number": 4001,
+                    "item_description": "Attachment bonding - per appointment",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": "per direct appointment",
+                            "variation_duration": 45,
+                            "variation_worker_responsibility": "LV2",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Cleaning"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Etching Process"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Composite resin aplication"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Curing"
+                                },
+                                {   
+                                    "sub_item_number": 5,
+                                    "procedure": "Polising"
+                                },
+                                {   
+                                    "sub_item_number": 6,
+                                    "procedure": "Maintenance instructtion"
+                                }
+                            ]
+                        }
+                                                             
+                    ]
+                },
+                {
+                    "item_number": 4002,
+                    "item_description": "Enamel stripping including tooth division – per appointment",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": "per direct appointment",
+                            "variation_duration": 20,
+                            "variation_worker_responsibility": "LV2",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Cleaning"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Stripping Process"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Polishing"
+                                }
+                            ]
+                        }
+                                                             
+                    ]
+                },
+                {
+                    "item_number": 4003,
+                    "item_description": "Application of passive appliance – fixed",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": "per appointment",
+                            "variation_duration": 60,
+                            "variation_worker_responsibility": "LV2",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Cleaning"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Etching Process"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Wire bonding process"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Resin Application"
+                                },
+                                {   
+                                    "sub_item_number": 5,
+                                    "procedure": "Curing"
+                                },
+                                {   
+                                    "sub_item_number": 6,
+                                    "procedure": "Occlusal checking"
+                                },
+                                {   
+                                    "sub_item_number": 7,
+                                    "procedure": "Polishing"
+                                },
+                                {   
+                                    "sub_item_number": 8,
+                                    "procedure": "Maintenance instruction"
+                                }
+
+                            ]
+                        }
+                                                             
+                    ]
+                }
+            ]   
+        },
+        {
+            "treatment_name": "Vaneer",
+            "treatment_details": [
+                {
+                    "item_number": 4004,
+                    "item_description": "Tooth preparation for veneer - per tooth",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 25,
+                            "variation_worker_responsibility": "LV3",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Tooth grinding for vaneer"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Finishing and Polishing"
+                                }
+                            ]
+                        }
+                                                             
+                    ]
+                }
+                  
+            ]   
+        },
+        {
+            "treatment_name": "Enhancing of tooth surface look",
+            "treatment_details": [
+                {
+                    "item_number": 4005,
+                    "item_description": "Cementation of Veneer - per tooth",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 25,
+                            "variation_worker_responsibility": "LV2",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Veneer insertion trial"
+                                },
+                                {  
+                                    "sub_item_number": 2,
+                                    "procedure": "Adjustment"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Cementation"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        }
+                                                             
+                    ]
+                }
+                
+            ]   
+        },
+        {
+            "treatment_name": "Whitenings",
+            "treatment_details": [
+                {
+                    "item_number": 4006,
+                    "item_description": "Tooth whitening external-per arch",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 25,
+                            "variation_worker_responsibility": "LV2",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Tooth cleaning"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Application of gum and lips protection materials"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Application of whitening agents"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Light curing"
+                                },
+                                {   
+                                    "sub_item_number": 5,
+                                    "procedure": "Removal of gum protection"
+                                },
+                                {   
+                                    "sub_item_number": 6,
+                                    "procedure": "Desenstization"
+                                },
+                                {   
+                                    "sub_item_number": 7,
+                                    "procedure": "Polishing"
+                                },
+                                {   
+                                    "sub_item_number": 8,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        }
+                                                             
+                    ]
+                },
+                {
+                    "item_number": 4007,
+                    "item_description": "Tooth whitening home aplication, per arch",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 10,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 0,
+                            "item_procedures": 
+                            [
+                                {   "sub_item_number": 1,
+                                    "procedure": "Bleaching instruction"
+                                }
+                            ]
+                        }
+                                                             
+                    ]
+                },
+                {
+                    "item_number": 4008,
+                    "item_description": "Gingivectomy",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 90,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Bleaching instruction"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Pocket marking"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "External bevel incision"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Tissue removal"
+                                },
+                                {   
+                                    "sub_item_number": 5,
+                                    "procedure": "Scaling"
+                                },
+                                {   
+                                    "sub_item_number": 6,
+                                    "procedure": "Tissue recountiring"
+                                },
+                                {   
+                                    "sub_item_number": 7,
+                                    "procedure": "Priodontal dressing"
+                                },
+                                {   
+                                    "sub_item_number": 8,
+                                    "procedure": "Post operation instruction"
+                                },
+                                {   
+                                    "sub_item_number": 9,
+                                    "procedure": "Post operating monitoring"
+                                }
+                                
+                            ]
+                        }
+                                                             
+                    ]
+                },
+                {
+                    "item_number": 4009,
+                    "item_description": "Crown Lenghtening",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 80,
+                            "variation_worker_responsibility": "OHT",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Pocket marking"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Gingival incision"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Gingival removal"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Bone seduction"
+                                },
+                                {   
+                                    "sub_item_number": 5,
+                                    "procedure": "Suture"
+                                },
+                                {   
+                                    "sub_item_number": 6,
+                                    "procedure": "Post-operation instruction"
+                                },
+                                {   
+                                    "sub_item_number": 7,
+                                    "procedure": "Suture removal"
+                                },
+                                {   
+                                    "sub_item_number": 8,
+                                    "procedure": "Post operating monitoring"
+                                }         
+                            ]
+                        }
+                                                             
+                    ]
+                }
+                
+           ]   
+        },
+        {
+            "treatment_name": "Transformation",
+            "treatment_details": [
+                {
+                    "item_number": 5001,
+                    "item_description": "Insertion of one-stage implant placement - one implant",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 60,
+                            "variation_worker_responsibility": "LV3",
+                            "chair": 3,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Gum opening by incision"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Application of surgical guide"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Bone drilling"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Insertion of implant"
+                                },
+                                {   
+                                    "sub_item_number": 5,
+                                    "procedure": "Wound snitching"
+                                },
+                                {   
+                                    "sub_item_number": 6,
+                                    "procedure": "Maintenance Instruction"
+                                },
+                                {   
+                                    "sub_item_number": 7,
+                                    "procedure": "Stitches removal"
+                                }
+                            ]
+                        }    
+                                                             
+                    ]
+                },
+                {
+                    "item_number": 5002,
+                        "item_description": "Fixture of abutment screw removal and replacment",
+                        "variation":[
+                            {   
+                                "variation_code": "A",
+                                "variation_details": null,
+                                "variation_duration": 15,
+                                "variation_worker_responsibility": "LV3",
+                                "chair": 2,
+                                "item_procedures": 
+                                [
+                                    {   
+                                        "sub_item_number": 1,
+                                        "procedure": "Placement of Hexdriver"
+                                    },
+                                    {   
+                                        "sub_item_number": 2,
+                                        "procedure": "Removal/replacement of fixture of abutment screw"
+                                    }
+                                ]
+                            }
+                        ]
+                },
+                {
+                    "item_number": 5003,
+                        "item_description": "Provisional implant restoration - per implant abutment",
+                        "variation":[
+                            {   
+                                "variation_code": "A",
+                                "variation_details": null,
+                                "variation_duration": 45,
+                                "variation_worker_responsibility": "LV3",
+                                "chair": 2,
+                                "item_procedures": 
+                                [
+                                    {   
+                                        "sub_item_number": 1,
+                                        "procedure": "Placement of provisional abutment"
+                                    },
+                                    {   
+                                        "sub_item_number": 2,
+                                        "procedure": "Close screw hole"
+                                    },
+                                    {   
+                                        "sub_item_number": 3,
+                                        "procedure": "Placement of provisional restoration"
+                                    },
+                                    {   
+                                        "sub_item_number": 4,
+                                        "procedure": "Check contact point"
+                                    },
+                                    {   
+                                        "sub_item_number": 5,
+                                        "procedure": "Adjustment"
+                                    }
+                                ]
+                            }
+                        ]
+                },
+                {
+                    "item_number": 5004,
+                        "item_description": "Full crown attached to implant insertation - porcelain/ceramic",
+                        "variation":[
+                            {   
+                                "variation_code": "A",
+                                "variation_details": null,
+                                "variation_duration": 45,
+                                "variation_worker_responsibility": "LV3",
+                                "chair": 2,
+                                "item_procedures": 
+                                [
+                                    {   
+                                        "sub_item_number": 1,
+                                        "procedure": "Placement of provisional abutment"
+                                    },
+                                    {   
+                                        "sub_item_number": 2,
+                                        "procedure": "Screw down the crown"
+                                    },
+                                    {   
+                                        "sub_item_number": 3,
+                                        "procedure": "Check contact point"
+                                    },
+                                    {   
+                                        "sub_item_number": 4,
+                                        "procedure": "Adjustment"
+                                    },
+                                    {   
+                                        "sub_item_number": 5,
+                                        "procedure": "Close the screw hole"
+                                    }
+                                ]
+                            }
+                        ]
+                },
+                {
+                    "item_number": 5005,
+                        "item_description": "Prothesis attached to implant insertion",
+                        "variation":[
+                            {   
+                                "variation_code": "A",
+                                "variation_details": null,
+                                "variation_duration": 20,
+                                "variation_worker_responsibility": "LV3",
+                                "chair": 2,
+                                "item_procedures": 
+                                [
+                                    {   
+                                        "sub_item_number": 1,
+                                        "procedure": "Removal of screw"
+                                    },
+                                    {   
+                                        "sub_item_number": 2,
+                                        "procedure": "Denture bar fitting"
+                                    }
+                                ]
+                            }
+                        ]
+                }
+            ]   
+        },
+        {
+            "treatment_name": "Crown & Bridge",
+            "treatment_details": [
+                {
+                    "item_number": 5006,
+                    "item_description": "Tooth preparation for crown or bridge - per tooth",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 40,
+                            "variation_worker_responsibility": "LV3",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Tooth grinding"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Marginal tooth grinded based on the material used"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Finishing and Polishing"
+                                }
+                            ]
+                        }                                             
+                    ]
+                },
+                {
+                    "item_number": 5007,
+                    "item_description": "Ready-made Crown",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": "Metal",
+                            "variation_duration": 40,
+                            "variation_worker_responsibility": "LV2",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Adjustment of the crown height"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Crimping crown cervical margin"
+                                }
+                            ]
+                        },
+                        {   
+                            "variation_code": "B",
+                            "variation_details": "Other",
+                            "variation_duration": 30,
+                            "variation_worker_responsibility": "LV2",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Crown/Bridge insertation trial"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Adjustment"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Cementation"
+                                },
+                                {   
+                                    "sub_item_number": 4,
+                                    "procedure": "Maintenance Instruction"
+                                }
+                            ]
+                        }                                                
+                    ]
+                }
+            ]   
+        },
+        {
+            "treatment_name": "Denture",
+            "treatment_details": [
+                {
+                    "item_number": 5008,
+                    "item_description": "Preparation of partial denture - per appointment",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 45,
+                            "variation_worker_responsibility": "LV2",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Tooth preparation for partical denture"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Vertical dimension of determination"
+                                }
+                            ]
+                        }                                             
+                    ]
+                },
+                {
+                    "item_number": 5009,
+                    "item_description": "Preliminary insertion of denture - per arch",
+                    "variation":[
+                        {   
+                            "variation_code": "A",
+                            "variation_details": null,
+                            "variation_duration": 20,
+                            "variation_worker_responsibility": "LV2",
+                            "chair": 2,
+                            "item_procedures": 
+                            [
+                                {   
+                                    "sub_item_number": 1,
+                                    "procedure": "Insertion of denture and examination"
+                                },
+                                {   
+                                    "sub_item_number": 2,
+                                    "procedure": "Denture adjustment"
+                                },
+                                {   
+                                    "sub_item_number": 3,
+                                    "procedure": "Maintenance instruction"
+                                }
+                            ]
+                        }                                             
+                    ]
+                }
+            ]   
+        }                                                                  
+        
+    ]
+}

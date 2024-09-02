@@ -1,0 +1,5 @@
+name: financial-optimization
+dependencies:
+- python=3.9
+- pip:
+  - -r file:requirements.txt
