@@ -12,7 +12,7 @@ This simulation repository was used to understand the condition of each dental c
 
 ## Scheduling Appointment Optimization
 Open **Test_coding.ipynb** file for this matter
-# V1 Simulation from 6 Month Treatment Demand Dummy
+## V1 Simulation from 6 Month Treatment Demand Dummy
 - Treatment Scenario data is from Data/Dummy_Scenario.csv this file was generated from **Dummy_scenario_generator.py**
 - Treatment Information data is from Data/Service_list.xlxs
 - Treatment rule, constraints and Labor Information is from Data/TaskClassfication.xlxs
