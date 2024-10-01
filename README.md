@@ -19,14 +19,14 @@ Open **Test_coding.ipynb** file for this matter
 - Run the jupyter notebook below "Run Sheet Scheduling V1"
 - The output look like clinic_scheduleV1.xlxs
 
-# V2 Simulation from 6 Month Treatment Demand Dummy, but more detail using item numbers
+## V2 Simulation from 6 Month Treatment Demand Dummy, but more detail using item numbers
 - Treatment Scenario data is from **Scenario_itemNumber.csv** or **Scenario_itemNumber2.csv** 
 - Treatment Information data **treatment_precedence.json**
 - Treatment rule, constraints and Labor Information is from Data/TaskClassficationV2.xlxs or TaskClassificationV2-2.xlxs
 - Run the jupyter notebook below "Run Sheet Scheduling V3"
 - The output look like clinic_scheduleV2.xlxs
 
-# V3 Simulation from past australian dental clinic treatments data
+## V3 Simulation from past australian dental clinic treatments data
 - Treatment Scenario data is from Data/Real/DES - Clarity Dental.xlxs (pre-process) -> Data/Real/Model_Input_Preprocess2.csv
 - Treatment rule, constraints and Labor Information is from Data/TaskClassfication_exp.xlxs
 - Run the jupyter notebook below "Run Sheet Scheduling V3"
