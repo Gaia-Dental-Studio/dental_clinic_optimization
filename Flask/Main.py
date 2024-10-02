@@ -9,7 +9,7 @@ import json
 matplotlib.use('Agg')
 
 
-from Page_Function import Generate_Train, Schedule_Optimization, Performance_Evaluation, Profit_Optimization
+from Page_Function import Generate_Train, Schedule_Optimization, Performance_Evaluation, Profit_Optimization, Run_Sheet_Optimization
 from Page_Function.Classes import Financial_Model, Optimization_Functions
 
 app = Flask(__name__)
@@ -202,6 +202,31 @@ def post_analyze_dentist_history():
             "payload3": payload3,
             "payload4": payload4
         })
+
+    except Exception as e:
+        print(traceback.format_exc())
+        return jsonify({'error': str(e)}), 500
+    
+@app.route('/run_sheet_optmization_v2-2', methods=['POST'])
+def post_run_sheet_optimization():
+    try:
+        # Check if the post request has the files part
+        if 'file1' not in request.files or 'file2' not in request.files or 'file3' not in request.files:
+            return jsonify({'error': 'No file part in the request'}), 400
+
+        constraint_data = pd.read_excel(request.files['file1'])
+        worker_data = pd.read_excel(request.files['file2'])
+
+        # Since 'file3' is a CSV file, use pd.read_csv
+        forecasted_data = pd.read_csv(request.files['file3'])
+
+        with open("./treatment_precedence_au.json", "r") as file:
+            item_numbers_json = json.load(file)
+
+        payload = Run_Sheet_Optimization.run_sheet_optimization(constraint_data, worker_data, forecasted_data, item_numbers_json)
+
+        # Combine the payloads into one JSON response
+        return payload
 
     except Exception as e:
         print(traceback.format_exc())

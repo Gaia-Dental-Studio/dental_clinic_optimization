@@ -1,11 +1,11 @@
-deap
-matplotlib
-numpy
-pandas
-streamlit
-openpyxl
-plotly
-PuLP
-XlsxWriter
-scikit-learn
-tensorflow
+deap==1.4.1
+matplotlib==3.7.5
+numpy==1.26.4
+pandas==2.2.2
+streamlit==1.35.0
+openpyxl>=3.0.10
+plotly>=5.18.0
+PuLP>=2.8.0
+XlsxWriter>=3.2.0
+scikit-learn==1.4.2
+tensorflow== 2.14.1
