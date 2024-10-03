@@ -9,4 +9,3 @@ PuLP
 XlsxWriter
 scikit-learn
 tensorflow
-PuLP
