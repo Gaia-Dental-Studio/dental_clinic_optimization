@@ -12,7 +12,7 @@ def run_sheet_optimization(Constraints_df, Worker_df, Forecasted_df, item_number
     item_numbers_data = item_numbers_json
 
     # Define the clinic conditions based on constraints
-    num_rooms = int(constraints_df.loc[constraints_df['Constraints'] == 'Room_num', 'Value'].values[0])
+    num_rooms = int(constraints_df.loc[constraints_df['Constraints'] == 'Room_num', 'Value'].values[0]) #Next update this
     treatment_interval = int(constraints_df.loc[constraints_df['Constraints'] == 'Treatment_Interval', 'Value'].values[0])
     clinic_open_time = constraints_df.loc[constraints_df['Constraints'] == 'Clinic_Open', 'Value'].values[0]
     clinic_close_time = constraints_df.loc[constraints_df['Constraints'] == 'Clinic_Close', 'Value'].values[0]
