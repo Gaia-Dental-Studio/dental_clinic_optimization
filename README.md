@@ -52,7 +52,7 @@ There is Preprocessing code to process raw past dental clinic treatments hostory
         1. Each dentist average treatment duration (from past data)
         2. Each dentisht treatment efficiency increase (from past data)
         3. Each dentist treatment performance score (from past data (the formula is in the report ppt file))
-        and 4th payload is treatment speciality decision output
+        4. Last payload is dentist treatment speciality decision output
     - **/profit_optimization** get clinic financial projection based on historical treatment demands
     - **/run_sheet_optimization_v2-2** endpoint request to get run sheet scheduling V2-2 (inside **test_coding.ipynb** file)
 - Check the **Flask_test.ipynb** file to test & understad the payload input for these endpoints
