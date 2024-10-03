@@ -44,17 +44,17 @@ There is Preprocessing code to process raw past dental clinic treatments hostory
 - To run this endpoint, move to **Flask** foldear
 - Run the **Main.py** file to run the clinic endpoint server
     endpoint description:
-    -**/forecast_scenario**, generate scenario prediction for predicting treatment demand (used for Scheduling Appointment Optimization V1)
-    -**/optimize_schedule**, generate dentist roster data based on treatment demand (this version was beofore Scheduling Appointment Optimization V1)
-    -**/performance_evaluation**, get dentist performance evaluation for certain treatment  based on previous history (this version was beofore Scheduling Appointment Optimization V1)
-    -**/performance_evaluation_chart** get dentist history of treatment duration trend/chart
-    -**/analyze_dentist_history** get 4 payloads, first 3 payloads are speciality metrics: 
+    - **/forecast_scenario**, generate scenario prediction for predicting treatment demand (used for Scheduling Appointment Optimization V1)
+    - **/optimize_schedule**, generate dentist roster data based on treatment demand (this version was beofore Scheduling Appointment Optimization V1)
+    - **/performance_evaluation**, get dentist performance evaluation for certain treatment  based on previous history (this version was beofore Scheduling Appointment Optimization V1)
+    - **/performance_evaluation_chart** get dentist history of treatment duration trend/chart
+    - **/analyze_dentist_history** get 4 payloads, first 3 payloads are speciality metrics: 
         1. Each dentist average treatment duration (from past data)
         2. Each dentisht treatment efficiency increase (from past data)
         3. Each dentist treatment performance score (from past data (the formula is in the report ppt file))
         and 4th payload is treatment speciality decision output
-    -**/profit_optimization** get clinic financial projection based on historical treatment demands
-    -**/run_sheet_optimization_v2-2** endpoint request to get run sheet scheduling V2-2 (inside **test_coding.ipynb** file)
+    - **/profit_optimization** get clinic financial projection based on historical treatment demands
+    - **/run_sheet_optimization_v2-2** endpoint request to get run sheet scheduling V2-2 (inside **test_coding.ipynb** file)
 - Check the **Flask_test.ipynb** file to test & understad the payload input for these endpoints
 
 
