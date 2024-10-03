@@ -257,6 +257,7 @@ def run_sheet_optimization(Constraints_df, Worker_df, Forecasted_df, item_number
             room_schedule.append({
                 "date": row['Date'].strftime('%Y-%m-%d'),
                 "appointment_start": row['Start_Time'],
+                "appointment_finish": row['Finish_Time'],
                 "item_number": row['Item_Number'],
                 "treatment_type": row['Treatment_Names'],
                 "treatment_duration": row['Duration'],
