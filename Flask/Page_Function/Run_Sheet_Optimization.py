@@ -94,124 +94,140 @@ def run_sheet_optimization(Constraints_df, Worker_df, Forecasted_df, item_number
     # Sort the dates to ensure they are processed in chronological order
     sorted_dates = sorted(forecast_reshaped['date'].unique())
 
-    # Iterate over each unique date in sorted order
-    for date in sorted_dates:
-        print(f"Processing date: {date}")
-        
-        # Reset weekly hours if it's a new week
-        week_of_year = pd.to_datetime(date).isocalendar()[1]
-        if week_of_year != current_week:
-            worker_hours_weekly = {worker_id: 0 for worker_id in worker_df['Worker_Id']}
-            current_week = week_of_year
-        
-        # Reset daily hours for workers
-        worker_hours_daily = {worker_id: 0 for worker_id in worker_df['Worker_Id']}
-        
-        # Reset or update last end time appropriately for new day
-        for worker_id in worker_last_end_time:
-            worker_last_end_time[worker_id] = pd.to_datetime(date).replace(hour=0, minute=0, second=0)
-        
-        # Reset current time for each room to the clinic's opening time
-        current_time = {room: pd.to_datetime(f"{date} {clinic_open_time}") for room in chairs_in_rooms.keys()}
-        current_time['Remote'] = pd.to_datetime(f"{date} {clinic_open_time}")  # Add Remote room
-        
-        # Diagnostic output to ensure reset is correct
-        print(f"Worker hours reset for {date}:")
-        print(f"Daily hours: {worker_hours_daily}")
-        print(f"Weekly hours: {worker_hours_weekly}")
-        print(f"Worker last end time: {worker_last_end_time}")
-        print(f"Current time for rooms: {current_time}")
-        
-        # Continue with the scheduling logic
-        daily_treatments = forecast_reshaped[forecast_reshaped['date'] == date]
+    max_retries = 10
 
-        for index, row in daily_treatments.iterrows():
-            item_number = row['Treatment']
-            count = int(row['Count'])  # Number of sessions for this treatment
+    for attempt in range(max_retries):
+        try:
+            # Iterate over each unique date in sorted order
+            for date in sorted_dates:
+                # print(f"Processing date: {date}")
+                
+                # Reset weekly hours if it's a new week
+                week_of_year = pd.to_datetime(date).isocalendar()[1]
+                if week_of_year != current_week:
+                    worker_hours_weekly = {worker_id: 0 for worker_id in worker_df['Worker_Id']}
+                    current_week = week_of_year
+                
+                # Reset daily hours for workers
+                worker_hours_daily = {worker_id: 0 for worker_id in worker_df['Worker_Id']}
+                
+                # Reset or update last end time appropriately for new day
+                for worker_id in worker_last_end_time:
+                    worker_last_end_time[worker_id] = pd.to_datetime(date).replace(hour=0, minute=0, second=0)
+                
+                # Reset current time for each room to the clinic's opening time
+                current_time = {room: pd.to_datetime(f"{date} {clinic_open_time}") for room in chairs_in_rooms.keys()}
+                current_time['Remote'] = pd.to_datetime(f"{date} {clinic_open_time}")  # Add Remote room
+                
+                # Diagnostic output to ensure reset is correct
+                # print(f"Worker hours reset for {date}:")
+                # print(f"Daily hours: {worker_hours_daily}")
+                # print(f"Weekly hours: {worker_hours_weekly}")
+                # print(f"Worker last end time: {worker_last_end_time}")
+                # print(f"Current time for rooms: {current_time}")
+                
+                # Continue with the scheduling logic
+                daily_treatments = forecast_reshaped[forecast_reshaped['date'] == date]
 
-            # Initialize variables
-            treatment_info = None
-            treatment_duration = None
+                for index, row in daily_treatments.iterrows():
+                    item_number = row['Treatment']
+                    count = int(row['Count'])  # Number of sessions for this treatment
 
-            # Variation factor for treatment duration
-            variation_factor = np.random.uniform(0.8, 1.2)  # ±20% variability
+                    # Initialize variables
+                    treatment_info = None
+                    treatment_duration = None
 
-            # Find the corresponding treatment and variation in the JSON data
-            for treatment in item_numbers_data['treatment']:
-                for detail in treatment['treatment_details']:
-                    if str(detail['item_number']) == item_number:
-                        treatment_info = detail
-                        treatment_duration = float(detail['treatment_duration_ind'] * variation_factor)
+                    # Variation factor for treatment duration
+                    variation_factor = np.random.uniform(0.8, 1.2)  # ±20% variability
+
+                    # Find the corresponding treatment and variation in the JSON data
+                    for treatment in item_numbers_data['treatment']:
+                        for detail in treatment['treatment_details']:
+                            if str(detail['item_number']) == item_number:
+                                treatment_info = detail
+                                treatment_duration = float(detail['treatment_duration_ind'] * variation_factor)
+                                break
+                        if treatment_info is not None:
+                            break
+
+                    # Chair/room assignment
+                    if treatment_info['chair'] == 3:
+                        room = 'Room3'  # Assign to Room3 for chair 3
+                    else:
+                        room = 'Room1' if non_advanced_room_toggle else 'Room2'  # Toggle between Room1 and Room2 for chair 1 or 2
+                        non_advanced_room_toggle = not non_advanced_room_toggle  # Alternate between Room1 and Room2
+
+                    # Select the worker for this treatment from all eligible workers
+                    eligible_workers = []
+                    for worker_id in worker_df['Worker_Id']:
+                        # Check if the worker is eligible for this treatment
+                        if item_number in worker_df.loc[worker_df['Worker_Id'] == worker_id, 'Eligible_Treatments'].values[0]:
+                            eligible_workers.append(worker_id)
+
+                    selected_worker = None
+
+                    # Iterate through eligible workers and find the first available one
+                    for worker_id in eligible_workers:
+                        daily_available = max_working_hour_day - worker_hours_daily[worker_id]
+                        weekly_available = max_working_hour_week - worker_hours_weekly[worker_id]
+                        start_time = current_time[room]
+                        end_time = start_time + pd.to_timedelta(treatment_duration, unit='m')
+
+                        # Debugging output to validate worker selection logic
+                        # print(f"Worker: {worker_id}, daily available: {daily_available}, weekly available: {weekly_available}, start: {start_time}, end: {end_time}")
+
+                        # Check if the worker has enough daily and weekly available time and can start the treatment on time
+                        if daily_available >= treatment_duration and weekly_available >= treatment_duration:
+                            if worker_last_end_time[worker_id] <= start_time:
+                                selected_worker = worker_id
+                                worker_last_end_time[worker_id] = end_time
+                                break  # Stop once a worker is selected
+
+                    # If no worker is found, print debug info and raise an error
+                    if selected_worker is None:
+                        print(f"Eligible workers: {eligible_workers}")
+                        print(f"Daily worker hours: {worker_hours_daily}")
+                        print(f"Weekly worker hours: {worker_hours_weekly}")
+                        raise ValueError(f"No available worker for treatment {item_number} on {date}")
+
+                    # Labor Cost calculation for each procedure
+                    labor_cost = treatment_duration * (worker_wages[selected_worker] / 60)
+
+                    # Schedule the treatment
+                    output_schedule[room].append({
+                        'Date': pd.to_datetime(date).date(),
+                        'Start_Time': start_time.strftime('%I:%M %p'),
+                        'Finish_Time': end_time.strftime('%I:%M %p'),
+                        'Item_Number': item_number,
+                        'Treatment_Names': treatment_info['treatment_type'],
+                        'Duration': treatment_duration,
+                        'Worker_Id': selected_worker,
+                        'Chair': treatment_info['chair'],
+                        'LaborCost': labor_cost
+                    })
+
+                    # Update the current time for the room
+                    current_time[room] = end_time + pd.to_timedelta(treatment_interval, unit='m')
+
+                    # Update worker hours
+                    worker_hours_daily[selected_worker] += treatment_duration
+                    worker_hours_weekly[selected_worker] += treatment_duration
+
+                    # Check if we exceed the clinic's operating hours for this room
+                    if current_time[room].time() > datetime.strptime(clinic_close_time, '%H:%M:%S').time():
                         break
-                if treatment_info is not None:
-                    break
 
-            # Chair/room assignment
-            if treatment_info['chair'] == 3:
-                room = 'Room3'  # Assign to Room3 for chair 3
-            else:
-                room = 'Room1' if non_advanced_room_toggle else 'Room2'  # Toggle between Room1 and Room2 for chair 1 or 2
-                non_advanced_room_toggle = not non_advanced_room_toggle  # Alternate between Room1 and Room2
+            # If no errors occurred, break out of the retry loop
+            print(f"Schedule completed successfully on attempt {attempt + 1}")
+            break
 
-            # Select the worker for this treatment from all eligible workers
-            eligible_workers = []
-            for worker_id in worker_df['Worker_Id']:
-                # Check if the worker is eligible for this treatment
-                if item_number in worker_df.loc[worker_df['Worker_Id'] == worker_id, 'Eligible_Treatments'].values[0]:
-                    eligible_workers.append(worker_id)
+        except ValueError as e:
+            # Handle the error and retry up to the maximum number of retries
+            print(f"Attempt {attempt + 1} failed with error: {e}")
 
-            selected_worker = None
-
-            # Iterate through eligible workers and find the first available one
-            for worker_id in eligible_workers:
-                daily_available = max_working_hour_day - worker_hours_daily[worker_id]
-                weekly_available = max_working_hour_week - worker_hours_weekly[worker_id]
-                start_time = current_time[room]
-                end_time = start_time + pd.to_timedelta(treatment_duration, unit='m')
-
-                # Debugging output to validate worker selection logic
-                # print(f"Worker: {worker_id}, daily available: {daily_available}, weekly available: {weekly_available}, start: {start_time}, end: {end_time}")
-
-                # Check if the worker has enough daily and weekly available time and can start the treatment on time
-                if daily_available >= treatment_duration and weekly_available >= treatment_duration:
-                    if worker_last_end_time[worker_id] <= start_time:
-                        selected_worker = worker_id
-                        worker_last_end_time[worker_id] = end_time
-                        break  # Stop once a worker is selected
-
-            # If no worker is found, print debug info and raise an error
-            if selected_worker is None:
-                print(f"Eligible workers: {eligible_workers}")
-                print(f"Daily worker hours: {worker_hours_daily}")
-                print(f"Weekly worker hours: {worker_hours_weekly}")
-                raise ValueError(f"No available worker for treatment {item_number} on {date}")
-
-            # Labor Cost calculation for each procedure
-            labor_cost = treatment_duration * (worker_wages[selected_worker] / 60)
-
-            # Schedule the treatment
-            output_schedule[room].append({
-                'Date': pd.to_datetime(date).date(),
-                'Start_Time': start_time.strftime('%I:%M %p'),
-                'Finish_Time': end_time.strftime('%I:%M %p'),
-                'Item_Number': item_number,
-                'Treatment_Names': treatment_info['treatment_type'],
-                'Duration': treatment_duration,
-                'Worker_Id': selected_worker,
-                'Chair': treatment_info['chair'],
-                'LaborCost': labor_cost
-            })
-
-            # Update the current time for the room
-            current_time[room] = end_time + pd.to_timedelta(treatment_interval, unit='m')
-
-            # Update worker hours
-            worker_hours_daily[selected_worker] += treatment_duration
-            worker_hours_weekly[selected_worker] += treatment_duration
-
-            # Check if we exceed the clinic's operating hours for this room
-            if current_time[room].time() > datetime.strptime(clinic_close_time, '%H:%M:%S').time():
-                break
+        if attempt == max_retries - 1:
+            print("Max retries reached. Unable to generate a complete schedule.")
+            raise  # If max retries reached, re-raise the exception
 
                 
     # Convert the schedule dictionary to DataFrames for each room
