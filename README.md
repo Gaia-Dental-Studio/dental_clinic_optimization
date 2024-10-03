@@ -11,7 +11,7 @@ This simulation repository was used to understand the condition of each dental c
 5. There is also endpoint version to get some optimization request in **Flask** Folder
 
 ## Scheduling Appointment Optimization
-Open **Test_coding.ipynb** file for this matter
+Check **Test_coding.ipynb** file for this matter
 ## V1 Simulation from 6 Month Treatment Demand Dummy
 - Treatment Scenario data is from Data/Dummy_Scenario.csv this file was generated from **Dummy_scenario_generator.py**
 - Treatment Information data is from Data/Service_list.xlxs
@@ -31,6 +31,8 @@ Open **Test_coding.ipynb** file for this matter
 - Treatment rule, constraints and Labor Information is from Data/TaskClassfication_exp.xlxs
 - Run the jupyter notebook below "Run Sheet Scheduling V3"
 - The output look like clinic_scheduleV3.xlxs
+
+check **Output** folder to see the Scheduling Appointment Optimization output files
 
 ## Scheduling Optimization Pipeline
 ![Schedule Optimization Pipeline](GAIA_Pipeline.png)
