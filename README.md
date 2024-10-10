@@ -6,7 +6,7 @@ This simulation repository was used to understand the condition of each dental c
 ## General Workflow
 1. You can use any python version, recommended **Python 3.8++**
 2. Install python necessary dependencies from **requirements.txt**
-3. Run the simulation app, for local run please run **Main_streamlit.py** or you can deploy it in cloud using AWS elasticbeanstalk or any other cloud service you want, i think you might need to reiniate the elasticbeanstalk if you want to try (delete the .elasticbeanstalk folder)
+3. Run the simulation app, for local run please run **Main_streamlit.py** or you can deploy it in cloud using AWS elasticbeanstalk or any other cloud service you want, i think you might need to reinitiate the elasticbeanstalk if you want to try (delete the .elasticbeanstalk folder)
 4. To understand the simulation workflow please read the documentation
 5. There is also endpoint version to get some optimization request in **Flask** Folder
 
