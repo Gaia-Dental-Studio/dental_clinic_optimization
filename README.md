@@ -3,11 +3,17 @@
 ## Objective
 This simulation repository was used to understand the condition of each dental clinic to maximizing their profit by acknowledging opportunity and pattern by optimization method in many sectors such as Financial Modeling, Revenue Projection, Labor Roster Scheduling, Optimized Appointment Schedule, Resource Allocation, Treatment Demand Forecasting, Labor Performance Assesment, and many more optimization method we used for this project
 
-## General Workflow
+## Streamlit Simulation General Workflow
 1. You can use any python version, recommended **Python 3.8++**
 2. Install python necessary dependencies from **requirements.txt**
 3. Run the simulation app, for local run please run **Main_streamlit.py** or you can deploy it in cloud using AWS elasticbeanstalk or any other cloud service you want, i think you might need to reinitiate the elasticbeanstalk if you want to try (delete the .elasticbeanstalk folder)
-4. To understand the simulation workflow please read the documentation
+4. To understand the simulation workflow please read the **Streamlit_FinancialModelDoc.docx**
+5. Inside streamlit simulation the only important pages are:
+    - **Total Revenue Calculation** Financial projection to understand the future financial status and determine most profitable treatments bade on past data
+    - **Generate Data** To generate dummy data and treatment demand forecasting for V1
+    - **Scheduling Optimization 2.0** Generate shcedule of roster scheduling using Burte Force and Genetic Algorithm, this version was before the development of Run Scheduling Appointment Optimization
+    - **Peroformance Analysis** Page to evaluate dentist performance for each treatment from pas data
+    - Other page is just an experiment
 5. There is also endpoint version to get some optimization request in **Flask** Folder
 
 ## Scheduling Appointment Optimization
