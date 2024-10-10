@@ -12,7 +12,7 @@ def run_sheet_optimization(Constraints_df, Worker_df, Forecasted_df, item_number
     item_numbers_data = item_numbers_json
 
     # Define the clinic conditions based on constraints
-    num_rooms = int(constraints_df.loc[constraints_df['Constraints'] == 'Room_num', 'Value'].values[0]) #Next update this
+    num_rooms = int(constraints_df.loc[constraints_df['Constraints'] == 'Room_num', 'Value'].values[0])
     treatment_interval = int(constraints_df.loc[constraints_df['Constraints'] == 'Treatment_Interval', 'Value'].values[0])
     clinic_open_time = constraints_df.loc[constraints_df['Constraints'] == 'Clinic_Open', 'Value'].values[0]
     clinic_close_time = constraints_df.loc[constraints_df['Constraints'] == 'Clinic_Close', 'Value'].values[0]
@@ -22,15 +22,8 @@ def run_sheet_optimization(Constraints_df, Worker_df, Forecasted_df, item_number
     #Preprocess
     scenario_df_v2 = scenario_df_v2.iloc[:, 1:]
 
-
-    # Room Configurations
-    chairs_in_rooms = {
-        'Room1': ['Chair1', 'Chair2'],
-        'Room2': ['Chair1', 'Chair2'],
-        'Room3': ['Chair3']
-    }
-
-
+    # Create the room configuration based on the number of rooms
+    chairs_in_rooms = create_room_configuration(num_rooms)
 
     worker_treatments = {
         "MD" : get_worker_treatments("MD", item_numbers_data),
@@ -51,10 +44,7 @@ def run_sheet_optimization(Constraints_df, Worker_df, Forecasted_df, item_number
 
 
     # Reshape the forecast_2_weeks DataFrame to have a 'Treatment' and 'Count' for each date
-    forecast_reshaped = scenario_df_v2.melt(id_vars=['date'], 
-                                        var_name='Treatment', 
-                                        value_name='Count')
-
+    forecast_reshaped = scenario_df_v2.melt(id_vars=['date'], var_name='Treatment', value_name='Count')
 
     # Filter out treatments not in item_numbers
     item_numbers = get_item_numbers(item_numbers_data)
@@ -62,11 +52,6 @@ def run_sheet_optimization(Constraints_df, Worker_df, Forecasted_df, item_number
 
     # Map worker types to their hourly wages and IDs
     worker_wages = worker_df.set_index('Worker_Id')['Wage_Hour'].to_dict()
-    job_to_worker_ids = worker_df.groupby('Job')['Worker_Id'].apply(list).to_dict() #Change the "JOB" Column format later 
-
-    # Function to get eligible treatments for each worker based on their Job
-    def get_eligible_treatments(worker_job, worker_treatments):
-        return worker_treatments.get(worker_job, [])
 
     # Create a new column in the DataFrame for eligible treatments
     worker_df['Eligible_Treatments'] = worker_df['Job'].apply(lambda job: get_eligible_treatments(job, worker_treatments))
@@ -82,9 +67,6 @@ def run_sheet_optimization(Constraints_df, Worker_df, Forecasted_df, item_number
     # Initialize time tracking for each room
     current_time = {room: pd.to_datetime(f"{forecast_reshaped['date'].min()} {clinic_open_time}") for room in chairs_in_rooms.keys()}
 
-    # Keep track of which room to assign the next non-advanced treatment
-    non_advanced_room_toggle = True
-
     # Track the current week to reset weekly hours
     current_week = pd.to_datetime(forecast_reshaped['date'].min()).isocalendar()[1]
 
@@ -94,13 +76,15 @@ def run_sheet_optimization(Constraints_df, Worker_df, Forecasted_df, item_number
     # Sort the dates to ensure they are processed in chronological order
     sorted_dates = sorted(forecast_reshaped['date'].unique())
 
-    max_retries = 10
+    max_retries = 30
+
+    # Track treatment assignments: A dictionary to track how many times each treatment has been scheduled per day
+    treatment_assignment_tracker = {date: {} for date in sorted_dates}
 
     for attempt in range(max_retries):
         try:
             # Iterate over each unique date in sorted order
             for date in sorted_dates:
-                # print(f"Processing date: {date}")
                 
                 # Reset weekly hours if it's a new week
                 week_of_year = pd.to_datetime(date).isocalendar()[1]
@@ -119,103 +103,107 @@ def run_sheet_optimization(Constraints_df, Worker_df, Forecasted_df, item_number
                 current_time = {room: pd.to_datetime(f"{date} {clinic_open_time}") for room in chairs_in_rooms.keys()}
                 current_time['Remote'] = pd.to_datetime(f"{date} {clinic_open_time}")  # Add Remote room
                 
-                # Diagnostic output to ensure reset is correct
-                # print(f"Worker hours reset for {date}:")
-                # print(f"Daily hours: {worker_hours_daily}")
-                # print(f"Weekly hours: {worker_hours_weekly}")
-                # print(f"Worker last end time: {worker_last_end_time}")
-                # print(f"Current time for rooms: {current_time}")
-                
                 # Continue with the scheduling logic
                 daily_treatments = forecast_reshaped[forecast_reshaped['date'] == date]
 
+                # Variables to manage room toggling for normal treatments
+                normal_rooms = [room for room, chairs in chairs_in_rooms.items() if 'Chair1' in chairs or 'Chair2' in chairs]
+                special_rooms = [room for room, chairs in chairs_in_rooms.items() if 'Chair3' in chairs]
+                normal_room_index = 0  # To toggle between normal rooms
+
                 for index, row in daily_treatments.iterrows():
                     item_number = row['Treatment']
-                    count = int(row['Count'])  # Number of sessions for this treatment
+                    forecasted_count = int(row['Count'])  # Number of sessions for this treatment
 
-                    # Initialize variables
-                    treatment_info = None
-                    treatment_duration = None
+                    # Initialize treatment tracker for the day if not present
+                    if item_number not in treatment_assignment_tracker[date]:
+                        treatment_assignment_tracker[date][item_number] = 0
 
-                    # Variation factor for treatment duration
-                    variation_factor = np.random.uniform(0.8, 1.2)  # ±20% variability
+                    # Schedule sessions until the forecasted count is met
+                    while treatment_assignment_tracker[date][item_number] < forecasted_count:
 
-                    # Find the corresponding treatment and variation in the JSON data
-                    for treatment in item_numbers_data['treatment']:
-                        for detail in treatment['treatment_details']:
-                            if str(detail['item_number']) == item_number:
-                                treatment_info = detail
-                                treatment_duration = float(detail['treatment_duration_ind'] * variation_factor)
+                        # Initialize variables
+                        treatment_info = None
+                        treatment_duration = None
+
+                        # Variation factor for treatment duration
+                        variation_factor = np.random.uniform(0.8, 1.2)  # ±20% variability
+
+                        # Find the corresponding treatment and variation in the JSON data
+                        for treatment in item_numbers_data['treatment']:
+                            for detail in treatment['treatment_details']:
+                                if str(detail['item_number']) == item_number:
+                                    treatment_info = detail
+                                    treatment_duration = float(detail['treatment_duration_ind'] * variation_factor)
+                                    break
+                            if treatment_info is not None:
                                 break
-                        if treatment_info is not None:
+
+                        # Chair/room assignment
+                        if treatment_info['chair'] == 3:
+                            # Assign to a special room (using Chair3)
+                            room = special_rooms[0]  # Since we only have one or a few special rooms, use the first one.
+                        else:
+                            # Assign to a normal room (using Chair1 or Chair2)
+                            room = normal_rooms[normal_room_index]
+                            normal_room_index = (normal_room_index + 1) % len(normal_rooms)  # Toggle between normal rooms
+
+                        # Select the worker for this treatment from all eligible workers
+                        eligible_workers = []
+                        for worker_id in worker_df['Worker_Id']:
+                            # Check if the worker is eligible for this treatment
+                            if item_number in worker_df.loc[worker_df['Worker_Id'] == worker_id, 'Eligible_Treatments'].values[0]:
+                                eligible_workers.append(worker_id)
+
+                        selected_worker = None
+
+                        # Iterate through eligible workers and find the first available one
+                        for worker_id in eligible_workers:
+                            daily_available = max_working_hour_day - worker_hours_daily[worker_id]
+                            weekly_available = max_working_hour_week - worker_hours_weekly[worker_id]
+                            start_time = current_time[room]
+                            end_time = start_time + pd.to_timedelta(treatment_duration, unit='m')
+
+                            # Check if the worker has enough daily and weekly available time and can start the treatment on time
+                            if daily_available >= treatment_duration and weekly_available >= treatment_duration:
+                                if worker_last_end_time[worker_id] <= start_time:
+                                    selected_worker = worker_id
+                                    worker_last_end_time[worker_id] = end_time
+                                    break  # Stop once a worker is selected
+
+                        # If no worker is found, raise an error
+                        if selected_worker is None:
+                            raise ValueError(f"No available worker for treatment {item_number} on {date}")
+
+                        # Labor Cost calculation for each procedure
+                        labor_cost = treatment_duration * (worker_wages[selected_worker] / 60)
+
+                        # Schedule the treatment
+                        output_schedule[room].append({
+                            'Date': pd.to_datetime(date).date(),
+                            'Start_Time': start_time.strftime('%I:%M %p'),
+                            'Finish_Time': end_time.strftime('%I:%M %p'),
+                            'Item_Number': item_number,
+                            'Treatment_Names': treatment_info['treatment_type'],
+                            'Duration': treatment_duration,
+                            'Worker_Id': selected_worker,
+                            'Chair': treatment_info['chair'],
+                            'LaborCost': labor_cost
+                        })
+
+                        # Update the current time for the room
+                        current_time[room] = end_time + pd.to_timedelta(treatment_interval, unit='m')
+
+                        # Update worker hours
+                        worker_hours_daily[selected_worker] += treatment_duration
+                        worker_hours_weekly[selected_worker] += treatment_duration
+
+                        # **Update the treatment assignment tracker**: Track how many times the treatment has been scheduled
+                        treatment_assignment_tracker[date][item_number] += 1
+
+                        # Check if we exceed the clinic's operating hours for this room
+                        if current_time[room].time() > datetime.strptime(clinic_close_time, '%H:%M:%S').time():
                             break
-
-                    # Chair/room assignment
-                    if treatment_info['chair'] == 3:
-                        room = 'Room3'  # Assign to Room3 for chair 3
-                    else:
-                        room = 'Room1' if non_advanced_room_toggle else 'Room2'  # Toggle between Room1 and Room2 for chair 1 or 2
-                        non_advanced_room_toggle = not non_advanced_room_toggle  # Alternate between Room1 and Room2
-
-                    # Select the worker for this treatment from all eligible workers
-                    eligible_workers = []
-                    for worker_id in worker_df['Worker_Id']:
-                        # Check if the worker is eligible for this treatment
-                        if item_number in worker_df.loc[worker_df['Worker_Id'] == worker_id, 'Eligible_Treatments'].values[0]:
-                            eligible_workers.append(worker_id)
-
-                    selected_worker = None
-
-                    # Iterate through eligible workers and find the first available one
-                    for worker_id in eligible_workers:
-                        daily_available = max_working_hour_day - worker_hours_daily[worker_id]
-                        weekly_available = max_working_hour_week - worker_hours_weekly[worker_id]
-                        start_time = current_time[room]
-                        end_time = start_time + pd.to_timedelta(treatment_duration, unit='m')
-
-                        # Debugging output to validate worker selection logic
-                        # print(f"Worker: {worker_id}, daily available: {daily_available}, weekly available: {weekly_available}, start: {start_time}, end: {end_time}")
-
-                        # Check if the worker has enough daily and weekly available time and can start the treatment on time
-                        if daily_available >= treatment_duration and weekly_available >= treatment_duration:
-                            if worker_last_end_time[worker_id] <= start_time:
-                                selected_worker = worker_id
-                                worker_last_end_time[worker_id] = end_time
-                                break  # Stop once a worker is selected
-
-                    # If no worker is found, print debug info and raise an error
-                    if selected_worker is None:
-                        print(f"Eligible workers: {eligible_workers}")
-                        print(f"Daily worker hours: {worker_hours_daily}")
-                        print(f"Weekly worker hours: {worker_hours_weekly}")
-                        raise ValueError(f"No available worker for treatment {item_number} on {date}")
-
-                    # Labor Cost calculation for each procedure
-                    labor_cost = treatment_duration * (worker_wages[selected_worker] / 60)
-
-                    # Schedule the treatment
-                    output_schedule[room].append({
-                        'Date': pd.to_datetime(date).date(),
-                        'Start_Time': start_time.strftime('%I:%M %p'),
-                        'Finish_Time': end_time.strftime('%I:%M %p'),
-                        'Item_Number': item_number,
-                        'Treatment_Names': treatment_info['treatment_type'],
-                        'Duration': treatment_duration,
-                        'Worker_Id': selected_worker,
-                        'Chair': treatment_info['chair'],
-                        'LaborCost': labor_cost
-                    })
-
-                    # Update the current time for the room
-                    current_time[room] = end_time + pd.to_timedelta(treatment_interval, unit='m')
-
-                    # Update worker hours
-                    worker_hours_daily[selected_worker] += treatment_duration
-                    worker_hours_weekly[selected_worker] += treatment_duration
-
-                    # Check if we exceed the clinic's operating hours for this room
-                    if current_time[room].time() > datetime.strptime(clinic_close_time, '%H:%M:%S').time():
-                        break
 
             # If no errors occurred, break out of the retry loop
             print(f"Schedule completed successfully on attempt {attempt + 1}")
@@ -227,7 +215,7 @@ def run_sheet_optimization(Constraints_df, Worker_df, Forecasted_df, item_number
 
         if attempt == max_retries - 1:
             print("Max retries reached. Unable to generate a complete schedule.")
-            raise  # If max retries reached, re-raise the exception
+            raise  # If max retries reached, re-raise the exception`
 
                 
     # Convert the schedule dictionary to DataFrames for each room
@@ -280,22 +268,48 @@ def run_sheet_optimization(Constraints_df, Worker_df, Forecasted_df, item_number
     return output_json 
 
 
-# Determine which worker do which treatment
+# Functions
+# Room Configurations based on ratio logic
+def create_room_configuration(num_rooms):
+    if num_rooms < 5:
+        # If less than 5 rooms, ensure at least one special room
+        num_special_rooms = 1
+        num_normal_rooms = num_rooms - 1
+    else:
+        # Use 80% normal rooms and 20% special rooms
+        num_special_rooms = max(1, int(num_rooms * 0.2))
+        num_normal_rooms = num_rooms - num_special_rooms
+    
+    # Create room structure
+    normal_rooms = {f"Room{i+1}": ['Chair1', 'Chair2'] for i in range(num_normal_rooms)}
+    special_rooms = {f"Room{num_normal_rooms+i+1}": ['Chair3'] for i in range(num_special_rooms)}
+    
+    return {**normal_rooms, **special_rooms}
+
+# Determine which worker does which treatment
 def get_worker_treatments(worker_code, json_data):
     worker_treatments_list = []
-
     for treatment in json_data['treatment']:
         for detail in treatment['treatment_details']:
             if worker_code in detail.get('worker_responsibility_ind', []):
                 worker_treatments_list.append(str(detail['item_number']))
-
     return worker_treatments_list
 
 def get_item_numbers(json_data):
     item_numbers = []
-
     for treatment in json_data['treatment']:
         for detail in treatment['treatment_details']:
             item_numbers.append(str(detail['item_number']))
-
     return item_numbers
+
+def get_chair_treatments(json_data, chair_input):
+    chair_treatments = []
+    for treatment in json_data['treatment']:
+        for detail in treatment['treatment_details']:
+            if detail['chair'] == chair_input:
+                chair_treatments.append(str(detail['item_number']))
+    return chair_treatments
+
+# Function to get eligible treatments for each worker based on their Job
+def get_eligible_treatments(worker_job, worker_treatments):
+    return worker_treatments.get(worker_job, [])
