@@ -21,7 +21,7 @@ Check **Test_coding.ipynb** file for this matter
 
 ## V2 Simulation from 6 Month Treatment Demand Dummy, but more detail using item numbers
 - Treatment Scenario data is from **Scenario_itemNumber.csv** or **Scenario_itemNumber2.csv** 
-- Treatment Information data **treatment_precedence.json**
+- Treatment Information data **treatment_precedence.json** & **treatment_precedence_au.json**
 - Constraints and Labor Information is from **Data/Constraints_WorkerV2.xlsx or Constraints_WorkerV2-2.xlsx**
 - Run the jupyter notebook below "Run Sheet Scheduling V3"
 - The output look like clinic_scheduleV2.xlxs
